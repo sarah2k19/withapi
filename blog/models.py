@@ -12,14 +12,14 @@ STYLE_CHOICES = sorted((item, item) for item in get_all_styles())
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
-    text = models.TextField()
+    text = models.TextField(default ='', blank=True)
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(
             blank=True, null=True)
     #added after REST API implementation
     created = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=100, blank=True, default='')
+    title = models.CharField(max_length=100)
     code = models.TextField()
     linenos = models.BooleanField(default=False)
     language = models.CharField(choices=LANGUAGE_CHOICES, default='python', max_length=100)
